@@ -23,7 +23,7 @@ pipeline {
             }
             steps {
                 echo 'Deploying....'
-                sh 'sudo make install'
+                sh 'make install'
             }
         }
     }
