@@ -5,7 +5,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building Cloudfuse code'
-                sh 'yum install gcc make fuse-devel curl-devel libxml2-devel openssl-devel -y'
+                sh 'apt-get install build-essential libcurl4-openssl-dev libxml2-dev libssl-dev libfuse-dev libjson-c-dev -y'
                 sh './configure'
                 sh 'make'
             }
