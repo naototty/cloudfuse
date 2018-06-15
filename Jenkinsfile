@@ -5,9 +5,10 @@ pipeline {
         
     stage('SonarQube analysis') {
     // requires SonarQube Scanner 2.8+
-    def scannerHome = '/var/jenkins_home/sonar-scanner';
+    steps {
     withSonarQubeEnv('sonarqube209') {
-      sh "${scannerHome}/bin/sonar-scanner"
+      sh "/var/jenkins_home/sonar-scanner/bin/sonar-scanner"
+        }
     }
   }
         
