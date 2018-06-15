@@ -1,15 +1,16 @@
 pipeline {
     agent any
-
-     stage('SonarQube analysis') {
+    
+    stages {
+        
+    stage('SonarQube analysis') {
     // requires SonarQube Scanner 2.8+
     def scannerHome = '/var/jenkins_home/sonar-scanner';
     withSonarQubeEnv('sonarqube209') {
       sh "${scannerHome}/bin/sonar-scanner"
     }
   }
-    
-    stages {
+        
         stage('Build') {
             steps {
                 echo 'Building Cloudfuse code'
