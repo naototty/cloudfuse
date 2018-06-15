@@ -1,6 +1,14 @@
 pipeline {
     agent any
 
+     stage('SonarQube analysis') {
+    // requires SonarQube Scanner 2.8+
+    def scannerHome = tool 'SonarQube Scanner 2.8';
+    withSonarQubeEnv('sonarqube209') {
+      sh "${scannerHome}/bin/sonar-scanner"
+    }
+  }
+    
     stages {
         stage('Build') {
             steps {
