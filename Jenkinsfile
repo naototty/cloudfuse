@@ -6,11 +6,12 @@ pipeline {
     stage('SonarQube analysis') {
     // requires SonarQube Scanner 2.8+
     steps {
+    def sonarHome= tool name: 'scanner-3.2', type: 'hudson.plugins.sonar.SonarRunnerInstallation'
     withSonarQubeEnv('sonarqube209') {
-      sh "/var/jenkins_home/sonar-scanner/bin/sonar-scanner"
+      sh "${sonarHome}/bin/sonar-runner -Dsonar.host.url=${SONAR_HOST_URL}  -Dsonar.login=${SONAR_AUTH_TOKEN}    -Dsonar.projectName=cloudfuse -Dsonar.projectVersion=1.0 -Dsonar.projectKey=test:cloudfuse -Dsonar.sources=."
         }
-    }
-  }
+      }
+     }
         
         stage('Build') {
             steps {
